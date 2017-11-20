@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--My loading button custom attrs-->
+
+    <declare-styleable name="MyLoadingButton">
+
+        <attr name="mlb_backgroundColor" format="color" />
+        <attr name="mlb_loaderColor" format="color" />
+        <attr name="mlb_animationDuration" format="integer" />
+        <attr name="mlb_label" format="string" />
+        <attr name="mlb_labelSize" format="dimension" />
+        <attr name="mlb_labelColor" format="color"/>
+        <attr name="mlb_setIndeterminate" format="boolean" />
+        <attr name="mlb_setErrorIcon" format="reference"/>
+        <attr name="mlb_setDoneIcon" format="reference"/>
+
+    </declare-styleable>
+
+
+</resources>

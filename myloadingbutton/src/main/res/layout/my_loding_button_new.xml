@@ -1,0 +1,83 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/sign_in_button"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        >
+
+
+        <TextView
+            android:id="@+id/button_label_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:text="Login"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:elevation="5dp"
+            android:indeterminateTint="@android:color/white"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            />
+
+        <LinearLayout
+            android:id="@+id/progress_done_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/ic_progress_done"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            >
+
+            <ProgressBar
+                android:id="@+id/progress_done"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:visibility="invisible"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/progress_error_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/ic_progress_cancle"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            >
+
+            <ProgressBar
+                android:id="@+id/progress_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:visibility="invisible"
+
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
+
