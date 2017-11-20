@@ -123,7 +123,7 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
      */
     public void initView() {
 
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.my_loding_button_new, this);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.my_loding_button_layout, this);
 
         buttonAnimation = new ButtonAnimation(buttonExpandedWidth, animationTime);
 
