@@ -12,9 +12,9 @@
         <attr name="mlb_label" format="string" />
         <attr name="mlb_labelSize" format="dimension" />
         <attr name="mlb_labelColor" format="color"/>
-        <attr name="mlb_setIndeterminate" format="boolean" />
         <attr name="mlb_setErrorIcon" format="reference"/>
         <attr name="mlb_setDoneIcon" format="reference"/>
+        <attr name="mlb_setNormalAfterError" format="boolean"/>
 
     </declare-styleable>
 

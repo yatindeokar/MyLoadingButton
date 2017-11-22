@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -35,6 +36,8 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
     public float DEFAULT_BUTTON_LABEL_SIZE = 18f;
     public final int BUTTON_STATE_NORMAL = 1;
     public final int BUTTON_STATE_LOADING = 2;
+    public final int BUTTON_STATE_DONE = 3;
+    public final int BUTTON_STATE_ERROR = 4;
 
     String TAG = MyLoadingButton.class.getSimpleName();
     /**
@@ -62,11 +65,6 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
      */
     int buttonLabelColor;
 
-    /**
-     * set progress/loader to indeterminate or determinate by setting boolean value.
-     * true by default for indeterminate progress.
-     */
-    boolean isIndeterminate = true;
 
     Drawable progressErrorDrawable;
 
@@ -78,14 +76,20 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
     String buttonLabel = "Button";
 
     /**
+     * When button in error state set it to normal automatically after 2 sec. true by default.
+     */
+    boolean normalAfterError = true;
+
+    /**
      * Set button animation duration. 300 by default.
      */
     int animationTime = 300;
 
     /**
-     * Set button state. by default in normal state.
+     * Set button currentState. by default in normal State.
+     * State like normal, error, loading, done.
      */
-    int state = BUTTON_STATE_NORMAL;
+    int currentState = BUTTON_STATE_NORMAL;
 
     /**
      * all views
@@ -164,9 +168,9 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         loaderColor = typedArray.getColor(R.styleable.MyLoadingButton_mlb_loaderColor, DEFAULT_LOADER_COLOR);
         buttonLabelSize = typedArray.getDimension(R.styleable.MyLoadingButton_mlb_labelSize, DEFAULT_BUTTON_LABEL_SIZE);
         buttonLabelColor = typedArray.getColor(R.styleable.MyLoadingButton_mlb_labelColor, DEFAULT_BUTTON_LABEL_COLOR);
-        isIndeterminate = typedArray.getBoolean(R.styleable.MyLoadingButton_mlb_setIndeterminate, true);
         progressErrorDrawable = typedArray.getDrawable(R.styleable.MyLoadingButton_mlb_setErrorIcon);
         progressDoneDrawable = typedArray.getDrawable(R.styleable.MyLoadingButton_mlb_setDoneIcon);
+        normalAfterError = typedArray.getBoolean(R.styleable.MyLoadingButton_mlb_setNormalAfterError, true);
 
         Log.d(TAG, "setAttrs: " + buttonLabel);
 
@@ -187,9 +191,6 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
 
         //Set button label text color
         buttonLabelTextView.setTextColor(buttonLabelColor);
-
-        Log.d(TAG, "setAttrs: "+isIndeterminate);
-        progressBar.setIndeterminate(isIndeterminate);
 
         //Set progress error icon
         if (progressErrorDrawable != null)
@@ -263,19 +264,6 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
 
 
     /**
-     * Set button width
-     *
-     * @param width
-     * @return
-     */
-    public MyLoadingButton setButtonWidth(int width) {
-        buttonExpandedWidth = width;
-
-        return this;
-    }
-
-
-    /**
      * Set loading button label/text size.
      * @param size
      * @return
@@ -326,6 +314,18 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         return this;
     }
 
+    /**
+     * Set to normal state after error. true by default.
+     * @param toNormal
+     * @return
+     */
+    public MyLoadingButton setNormalAfterError(boolean toNormal){
+
+        normalAfterError = toNormal;
+
+        return this;
+    }
+
     @Override
     public void onClick(View view) {
 
@@ -333,12 +333,12 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
 
         if (id == R.id.button_layout){
 
-                switch (state) {
+                switch (currentState) {
 
                     case BUTTON_STATE_NORMAL:
 
                         showLoadingButton();
-                        state = BUTTON_STATE_LOADING;
+                        currentState = BUTTON_STATE_LOADING;
 
                         break;
 
@@ -346,7 +346,7 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
 
                         showNormalButton();
 
-                        state = BUTTON_STATE_NORMAL;
+                        currentState = BUTTON_STATE_NORMAL;
 
                         break;
 
@@ -365,7 +365,8 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         buttonAnimation.animateShapeExpand(buttonLayout);
         buttonAnimation.onFadeOutVisibleView(progressBar, buttonLabelTextView);
         buttonAnimation.fadeOutView(buttonLabelTextView);
-
+        buttonLayout.setClickable(true);
+        currentState = BUTTON_STATE_NORMAL;
     }
 
 
@@ -379,7 +380,8 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         buttonAnimation.fadeOutView(progressBar);
         buttonAnimation.fadeInView(progressErrorLayout);
         buttonAnimation.fadeInView(progressDoneLayout);
-
+        buttonLayout.setClickable(false);
+        currentState = BUTTON_STATE_LOADING;
     }
 
 
@@ -391,7 +393,8 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         buttonAnimation.animateShapeExpand(buttonLayout);
         buttonAnimation.onFadeOutVisibleView(progressDoneLayout, buttonLabelTextView);
         buttonAnimation.fadeOutView(buttonLabelTextView);
-
+        buttonLayout.setClickable(true);
+        currentState = BUTTON_STATE_NORMAL;
     }
 
 
@@ -405,7 +408,8 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         buttonAnimation.fadeOutView(progressDoneLayout);
         buttonAnimation.fadeInView(progressBar);
         buttonAnimation.fadeInView(progressErrorLayout);
-
+        buttonLayout.setClickable(false);
+        currentState = BUTTON_STATE_DONE;
     }
 
 
@@ -417,7 +421,8 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         buttonAnimation.animateShapeExpand(buttonLayout);
         buttonAnimation.onFadeOutVisibleView(progressErrorLayout, buttonLabelTextView);
         buttonAnimation.fadeOutView(buttonLabelTextView);
-
+        buttonLayout.setClickable(true);
+        currentState = BUTTON_STATE_NORMAL;
     }
 
 
@@ -431,6 +436,13 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         buttonAnimation.fadeOutView(progressErrorLayout);
         buttonAnimation.fadeInView(progressDoneLayout);
         buttonAnimation.fadeInView(progressBar);
+        buttonLayout.setClickable(false);
+        currentState = BUTTON_STATE_ERROR;
+
+        if (normalAfterError == true){
+
+            gotoNormalAfterDelay();
+        }
 
     }
 
@@ -443,6 +455,21 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         showProgressToNormalButton();
         showDoneToNormalButton();
         showErrorToNormalButton();
+        buttonLayout.setClickable(true);
+        currentState = BUTTON_STATE_NORMAL;
+
+    }
+
+    private void gotoNormalAfterDelay(){
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // add your code here
+                Log.d(TAG, "run: 2345");
+                showNormalButton();
+            }
+        }, 2000);
 
     }
 

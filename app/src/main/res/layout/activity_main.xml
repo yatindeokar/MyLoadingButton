@@ -24,8 +24,8 @@
         app:mlb_backgroundColor="@color/view_color_gray"
         app:mlb_labelColor="@color/colorAccent"
         app:mlb_loaderColor="@color/colorPrimaryDark"
-
-        ></com.example.myloadingbutton.MyLoadingButton>
+        app:mlb_setNormalAfterError="false"
+        />
 
     <Button
         android:id="@+id/loading_btn"
