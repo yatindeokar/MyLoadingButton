@@ -65,9 +65,14 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
      */
     int buttonLabelColor;
 
-
+    /**
+     * Button error icon.
+     */
     Drawable progressErrorDrawable;
 
+    /**
+     * Button done icon.
+     */
     Drawable progressDoneDrawable;
 
     /**
@@ -275,6 +280,7 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         return this;
     }
 
+
     /**
      * Set loading button label/text colot
      * @param mColor
@@ -286,6 +292,7 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
 
         return this;
     }
+
 
     /**
      * Set loading button progress error icon.
@@ -313,6 +320,7 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
 
         return this;
     }
+
 
     /**
      * Set to normal state after error. true by default.
@@ -460,6 +468,9 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
 
     }
 
+    /**
+     * button set to normal with delay of 2 sec.
+     */
     private void gotoNormalAfterDelay(){
 
         new Handler().postDelayed(new Runnable() {

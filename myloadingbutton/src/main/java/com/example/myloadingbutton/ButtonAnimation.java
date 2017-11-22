@@ -3,7 +3,6 @@ package com.example.myloadingbutton;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -45,9 +44,11 @@ public class ButtonAnimation {
         this.animationTime = animationTime;
     }
 
+
     /**
      * Fade in view and visible another view on animation end
      * value range from 0f to 1f , 0 for fade in 1 for fade out
+     *
      * @param view
      * @param visibleView
      */
@@ -67,9 +68,11 @@ public class ButtonAnimation {
 
     }
 
+
     /**
      * Fade out view and visible another view on animation end.
      * value range from 0f to 1f , 0 for fade in 1 for fade out
+     *
      * @param view
      * @param visibleView
      */
@@ -89,8 +92,10 @@ public class ButtonAnimation {
 
     }
 
+
     /**
      * Fade out view.
+     *
      * @param view
      */
     public void fadeOutView(View view) {
@@ -102,8 +107,10 @@ public class ButtonAnimation {
 
     }
 
+
     /**
      * Fade in view.
+     *
      * @param view
      */
     public void fadeInView(View view) {
@@ -118,6 +125,7 @@ public class ButtonAnimation {
 
     /**
      * Animate view to get shrink effect.
+     *
      * @param view
      */
     public void animateShapeShrink(final View view) {
@@ -139,13 +147,13 @@ public class ButtonAnimation {
 
     }
 
+
     /**
      * Animate view to get expand effect.
+     *
      * @param view
      */
     public void animateShapeExpand(final View view) {
-
-        Log.d(TAG, "animateShapeExpand: "+buttonExpandedWidth);
 
         ValueAnimator anim = ValueAnimator.ofInt(view.getMeasuredWidth(), buttonExpandedWidth);
 
@@ -163,7 +171,6 @@ public class ButtonAnimation {
         anim.start();
 
     }
-
 
 
 }
