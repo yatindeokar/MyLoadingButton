@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+    /**
+     * Customise MyLoadingButton
+     */
     private void setLoadingButtonStyle(){
 
         myLoadingButton.setAnimationDuration(1000)
@@ -85,6 +88,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onMyLoadingButtonClick() {
-        Toast.makeText(this, "clock", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "MyLoadingButton Click", Toast.LENGTH_SHORT).show();
     }
 }

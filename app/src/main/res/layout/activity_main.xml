@@ -21,9 +21,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:mlb_labelSize="5sp"
         app:mlb_label="Login Button"
-        app:mlb_backgroundColor="@color/view_color_gray"
-        app:mlb_labelColor="@color/colorAccent"
-        app:mlb_loaderColor="@color/colorPrimaryDark"
+        app:mlb_backgroundColor="@color/colorAccent"
+        app:mlb_labelColor="@color/white"
         app:mlb_setNormalAfterError="false"
         />
 
