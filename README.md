@@ -13,14 +13,24 @@ MyLoadingButton is a library that allows you to create a animated button which c
 
 Add this in your root build.gradle file ( not your module build.gradle file):
 
-.............code..............
-
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
 
 ## Dependency
 
 Add this to your module's build.gradle file:
 
-..........code...............
+```
+dependencies {
+		compile 'com.github.yatindeokar:MyLoadingButton:v1.0.1'
+	}
+```
 
 ## Basic Usage
 
