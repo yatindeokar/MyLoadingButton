@@ -1,6 +1,6 @@
-## My Loading Button
+# MyLoadingButton
 
-My Loading Button is a library that allows you to create a animated button which convert into loading, error and done state.
+MyLoadingButton is a library that allows you to create a animated button which converts into loading, error and done state.
 
 
 ![myloadingbuttondemon](https://user-images.githubusercontent.com/13361899/33232256-c7ed20be-d228-11e7-8894-fbc670a47317.gif)
@@ -56,9 +56,14 @@ To use this MyLoadingButton in your layout simply copy and paste the xml below. 
 
 ## Init from Java
 
+### Implements to get MyLoadingButton click listener
+
+implements MyLoadingButton.MyLoadingButtonClick
+
 ```java
 
 MyLoadingButton myLoadingButton = findViewById(R.id.my_loading_button);
+myLoadingButton.setMyButtonClickListener(this); // Set MyLoadingButton click listener
 
 myLoadingButton.setAnimationDuration(300)
                 .setButtonColor(R.color.colorAccent) // Set MyLoadingButton custom background color.
@@ -71,6 +76,41 @@ myLoadingButton.setAnimationDuration(300)
                 .setNormalAfterError(false); // Button animate to normal state if its in error state ,by default true.
                 
 ```
+
+### Change Button State
+
+> Change button state to LOADING
+
+```java
+
+myLoadingButton.showLoadingButton();
+
+``` 
+
+> Change button state to NORMAL
+
+```java
+
+myLoadingButton.showNormalButton();
+
+```
+
+> Change button state to ERROR
+
+```java
+
+myLoadingButton.showErrorButton();
+
+```
+
+> Change button state to DONE
+
+```java
+
+myLoadingButton.showDoneButton();
+
+```
+
 
 ## MIT License
 
