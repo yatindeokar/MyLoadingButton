@@ -38,15 +38,15 @@ dependencies {
 
 To use this MyLoadingButton in your layout simply copy and paste the xml below. This provides the default MyLoadingButton.
 
-<code>
-```xml
+
+```
 <com.example.myloadingbutton.MyLoadingButton
         android:id="@+id/my_loading_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
 ```
-</code>
+
 
 ### MyLoadingButton Attr
 
