@@ -105,6 +105,7 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
     ButtonAnimation buttonAnimation;
     LinearLayout progressDoneLayout;
     LinearLayout progressErrorLayout;
+    MyLoadingButtonClick myLoadingButtonClick;
 
 
     public MyLoadingButton(Context context) {
@@ -126,6 +127,15 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
         initView();
     }
 
+    public interface MyLoadingButtonClick{
+
+        void onMyLoadingButtonClick();
+
+    }
+
+    public void setMyButtonClickListener(MyLoadingButtonClick myButtonClickListener){
+        this.myLoadingButtonClick = myButtonClickListener;
+    }
 
     /**
      * Inflate layout to view and initialize view
@@ -359,6 +369,8 @@ public class MyLoadingButton extends RelativeLayout implements View.OnClickListe
                         break;
 
                 }
+
+                myLoadingButtonClick.onMyLoadingButtonClick();
 
         }
 
