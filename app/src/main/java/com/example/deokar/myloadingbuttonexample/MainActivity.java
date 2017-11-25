@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         myLoadingButton.setAnimationDuration(1000)
                 .setButtonColor(R.color.colorAccent)
-                .setButtonLabel("Activity")
+                .setButtonLabel("Login")
                 .setButtonLabelSize(20)
                 .setProgressLoaderColor(Color.WHITE)
                 .setButtonLabelColor(R.color.white);
